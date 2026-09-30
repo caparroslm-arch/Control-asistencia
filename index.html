@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Control de asistencia</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><strong>Control de asistencia</strong><button id="logout" class="secondary hidden">Cerrar sesión</button></header>
+<main>
+<section id="home"><h1>Control de asistencia</h1><p>Selecciona tu perfil</p>
+<div class="roles"><button data-role="teacher">👨‍🏫<b>Soy profesor</b><small>Gestionar alumnos y sesiones</small></button>
+<button data-role="student">👨‍🎓<b>Soy alumno</b><small>Consultar y registrar asistencia</small></button></div></section>
+
+<section id="teacherLogin" class="hidden card narrow"><h2>Acceso del profesor</h2>
+<label>Usuario</label><input id="tu" value="profesor"><label>Contraseña</label><input id="tp" type="password" value="profesor123">
+<button id="tlogin">Entrar</button><p class="hint">Demo: profesor / profesor123</p></section>
+
+<section id="studentLogin" class="hidden card narrow"><h2>Acceso del alumno</h2>
+<label>Usuario</label><input id="su"><label>Contraseña</label><input id="sp" type="password">
+<button id="slogin">Entrar</button><p id="smsg" class="message"></p></section>
+
+<section id="teacher" class="hidden"><h2>Panel del profesor</h2>
+<nav><button class="tab active" data-tab="sessions">Gestión de sesiones</button><button class="tab" data-tab="balance">Balance mensual</button><button class="tab" data-tab="students">Registro de alumnos</button><button class="tab" data-tab="qr">QR permanente</button></nav>
+<div id="sessions" class="tabbody"><div class="grid">
+<div class="card"><h3>Nueva sesión</h3><label>Fecha</label><input id="date" type="date" readonly><label>Nombre</label><input id="sessionName" placeholder="Ej.: Matemáticas"><button id="create">Crear sesión</button></div>
+<div class="card"><h3>Sesión actual</h3><div id="current"></div></div></div>
+<div class="card"><h3>Asistencia</h3><div id="attendance"></div></div></div>
+
+<div id="balance" class="tabbody hidden card"><h3>Balance mensual</h3><input id="month" type="month"><div id="balanceTable"></div></div>
+
+<div id="students" class="tabbody hidden card"><h3>Registro de alumnos</h3>
+<p class="hint">El profesor puede consultar y reenviar las credenciales. El alumno no puede cambiar su contraseña.</p>
+<input type="hidden" id="edit">
+<div class="formgrid"><div><label>Nombre y apellidos</label><input id="name"></div><div><label>Correo electrónico</label><input id="email" type="email"></div>
+<div><label>Usuario</label><input id="username"></div><div><label>Contraseña</label><input id="password"></div></div>
+<button id="saveStudent">Guardar alumno</button> <button id="cancel" class="secondary hidden">Cancelar</button>
+<div id="studentsTable"></div></div>
+
+<div id="qr" class="tabbody hidden card center"><h3>QR permanente del aula</h3><p>Este identificador no cambia.</p><div class="fakeqr">AULA-X82K91</div><code id="qrtext"></code><p class="hint">En esta versión local el escaneo se simula con un botón.</p></div>
+</section>
+
+<section id="student" class="hidden"><h2>Área del alumno</h2><p id="welcome"></p>
+<div class="grid"><div class="card"><h3>Registrar asistencia</h3><p>Inicia sesión y escanea el QR permanente cuando haya una sesión abierta.</p><button id="scan">📷 Escanear QR permanente</button><p id="scanmsg" class="message"></p></div>
+<div class="card"><h3>Mi balance</h3><div id="mybalance"></div></div></div>
+<div class="card"><h3>Historial</h3><div id="history"></div></div></section>
+</main><script src="app.js"></script></body></html>
